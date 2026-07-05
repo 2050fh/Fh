@@ -115,6 +115,11 @@
     transition: transform 0.3s var(--ease), border-color 0.3s var(--ease), background 0.3s var(--ease);
   }
 
+  /* لجعل البطاقة الفردية الأخيرة (التصوير) تأخذ عرض الشبكة بالكامل */
+  .hobby-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+
   .hobby-card:hover {
     border-color: var(--accent);
     background: var(--accent-dim);
@@ -234,6 +239,10 @@
     <div class="hobby-card">
       <span class="hobby-icon">🥊</span>
       <span class="hobby-title">Kickboxing</span>
+    </div>
+    <div class="hobby-card">
+      <span class="hobby-icon">📸</span>
+      <span class="hobby-title">Photography</span>
     </div>
   </div>
 
