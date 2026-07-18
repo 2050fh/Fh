@@ -1,578 +1,367 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!doctype html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>برنامج الجسم الجذاب - Model Physique</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Amine Fellah — AI & Web Developer Links" />
+<title>Amine Fellah | Links</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; }
+  :root {
+    --bg: #0b0a0d;
+    --panel: #18151a;
+    --line: rgba(201,164,99,.16);
+    --text: #f3ede2;
+    --muted: #9c9488;
+    --accent: #c9a463;
+    --accent-bright: #e8c98a;
+    --accent-dim: rgba(201,164,99,.14);
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --ease: cubic-bezier(.22,.61,.36,1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { background: var(--bg); }
 
   body {
-    background: linear-gradient(135deg, #0f0f1e, #1a1a2e);
-    color: #f0f0f0;
-    min-height: 100vh;
-    padding-bottom: 60px;
-  }
-
-  header {
-    background: linear-gradient(135deg, #FF6B6B, #C44569);
-    padding: 30px 20px;
-    text-align: center;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-  }
-
-  header h1 { font-size: 26px; margin-bottom: 8px; }
-  header p { opacity: 0.9; font-size: 14px; }
-
-  .tabs {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.6;
     display: flex;
     justify-content: center;
-    gap: 8px;
-    padding: 20px;
-    flex-wrap: wrap;
+    min-height: 100vh;
+    padding: 60px 24px;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    overflow-x: hidden;
   }
 
-  .tab-btn {
-    background: #24243e;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 30px;
-    cursor: pointer;
-    font-size: 13px;
-    font-weight: bold;
-    transition: 0.3s;
+  /* Ambient drifting glow behind everything */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: -20%;
+    background:
+      radial-gradient(circle at 28% 22%, rgba(201,164,99,.14), transparent 55%),
+      radial-gradient(circle at 74% 78%, rgba(201,164,99,.08), transparent 60%);
+    filter: blur(50px);
+    animation: drift 20s ease-in-out infinite alternate;
+    z-index: -1;
+    pointer-events: none;
   }
 
-  .tab-btn.active {
-    background: linear-gradient(135deg, #FF6B6B, #C44569);
-    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+  @keyframes drift {
+    from { transform: translate(0,0) scale(1); }
+    to   { transform: translate(3%, -3%) scale(1.08); }
   }
 
-  .tab-btn:hover { transform: translateY(-2px); }
+  a { text-decoration: none; color: inherit; }
 
-  .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
-
-  .tab-content { display: none; animation: fadeIn 0.5s; }
-  .tab-content.active { display: block; }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+  a:focus-visible, .hobby-card:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 8px;
   }
 
-  .day-card {
-    background: #1e1e35;
-    border-radius: 16px;
-    margin-bottom: 20px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-  }
-
-  .day-header {
-    background: linear-gradient(135deg, #FF6B6B, #C44569);
-    padding: 16px 20px;
-    font-size: 17px;
-    font-weight: bold;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .day-header .arrow { transition: 0.3s; }
-  .day-header.open .arrow { transform: rotate(180deg); }
-
-  .day-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
-  .day-body.open { max-height: 2500px; }
-
-  table { width: 100%; border-collapse: collapse; }
-
-  th {
-    background: #24243e;
-    padding: 12px;
-    text-align: right;
-    font-size: 12px;
-    color: #b8b8d1;
-  }
-
-  td { padding: 12px; border-bottom: 1px solid #2d2d4a; font-size: 13px; }
-  tr:hover { background: #24243e; }
-
-  .badge {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 10px;
-    font-weight: bold;
-    margin-left: 5px;
-    white-space: nowrap;
-  }
-
-  .badge-main { background: #e74c3c33; color: #ff6b5b; }
-  .badge-new { background: #2ecc7133; color: #2ecc71; }
-  .badge-assist { background: #3498db33; color: #5dade2; }
-  .badge-warmup { background: #f39c1233; color: #f5b041; }
-  .badge-core { background: #9b59b633; color: #bb8fce; }
-  .badge-aesthetic { background: #FF6B6B33; color: #FF6B6B; }
-  .badge-cardio { background: #00d2d333; color: #00d2d3; }
-
-  .info-box {
-    background: #24243e;
-    border-right: 4px solid #FF6B6B;
-    padding: 16px 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    font-size: 14px;
-    line-height: 1.8;
-  }
-
-  .warning-box {
-    background: #e74c3c22;
-    border-right: 4px solid #e74c3c;
-    padding: 16px 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    font-size: 14px;
-    line-height: 1.8;
-  }
-
-  .success-box {
-    background: #2ecc7122;
-    border-right: 4px solid #2ecc71;
-    padding: 16px 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    font-size: 14px;
-    line-height: 1.8;
-  }
-
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 15px;
-    margin-bottom: 25px;
-  }
-
-  .stat-card {
-    background: #1e1e35;
-    padding: 18px;
-    border-radius: 14px;
+  .container {
+    width: 100%;
+    max-width: 480px;
     text-align: center;
   }
 
-  .stat-card .value { font-size: 20px; font-weight: bold; color: #FF6B6B; }
-  .stat-card .label { font-size: 11px; color: #b8b8d1; margin-top: 5px; }
-
-  h2.section-title {
-    font-size: 20px;
-    margin: 25px 0 15px;
-    color: #fff;
-    border-bottom: 2px solid #FF6B6B;
-    padding-bottom: 10px;
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
-  .muscle-priority {
+  .profile, .hobby-card, .link-btn, .socials, .footer {
+    opacity: 0;
+    animation: fadeInUp .8s var(--ease) forwards;
+  }
+
+  /* Profile Section */
+  .profile { margin-bottom: 30px; animation-delay: .05s; }
+
+  .avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: var(--panel);
+    border: 2px solid var(--accent);
+    margin: 0 auto 20px;
     display: flex;
     align-items: center;
-    gap: 10px;
-    background: #1e1e35;
-    padding: 12px 16px;
-    border-radius: 10px;
+    justify-content: center;
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    color: var(--text);
+    font-weight: 500;
+    animation: glowPulse 3.6s ease-in-out infinite;
+  }
+
+  @keyframes glowPulse {
+    0%, 100% { box-shadow: 0 0 18px rgba(201,164,99,.25), 0 0 0 rgba(201,164,99,0); }
+    50%      { box-shadow: 0 0 34px rgba(201,164,99,.45), 0 0 12px rgba(201,164,99,.18); }
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+
+  h1 em {
+    font-style: italic;
+    background: linear-gradient(100deg, var(--accent) 0%, var(--accent-bright) 30%, var(--accent) 60%, var(--accent-bright) 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 5s linear infinite;
+  }
+
+  @keyframes shimmer {
+    to { background-position: -200% center; }
+  }
+
+  .role {
+    font-size: 0.85rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .bio {
+    font-size: 0.95rem;
+    color: var(--muted);
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
+  /* Hobbies Grid Section */
+  .hobbies {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  .hobby-card {
+    position: relative;
+    overflow: hidden;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 18px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform .3s var(--ease), border-color .3s var(--ease), background .3s var(--ease), box-shadow .3s var(--ease);
+    animation-delay: calc(.15s + (var(--i) * .08s));
+  }
+
+  .hobby-card:nth-child(1) { --i: 1; }
+  .hobby-card:nth-child(2) { --i: 2; }
+  .hobby-card:nth-child(3) { --i: 3; }
+  .hobby-card:nth-child(4) { --i: 4; }
+  .hobby-card:nth-child(5) { --i: 5; }
+
+  /* لجعل البطاقة الفردية الأخيرة (التصوير) تأخذ عرض الشبكة بالكامل */
+  .hobby-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+
+  .hobby-card::after, .link-btn::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -75%;
+    width: 50%; height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(232,201,138,.16), transparent);
+    transform: skewX(-20deg);
+    transition: left .6s var(--ease);
+    pointer-events: none;
+  }
+
+  .hobby-card:hover {
+    border-color: var(--accent);
+    background: var(--accent-dim);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 26px rgba(201,164,99,.14);
+  }
+
+  .hobby-card:hover::after, .link-btn:hover::after { left: 125%; }
+
+  .hobby-icon {
+    font-size: 1.8rem;
     margin-bottom: 8px;
   }
 
-  .priority-bar {
-    height: 8px;
-    border-radius: 4px;
-    background: linear-gradient(90deg, #FF6B6B, #C44569);
+  .hobby-title {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text);
   }
 
-  footer { text-align: center; padding: 30px 20px; color: #7a7a9a; font-size: 13px; }
+  .hobby-stat {
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin-top: 4px;
+    letter-spacing: 0.05em;
+  }
 
-  @media (max-width: 600px) {
-    table { font-size: 11px; }
-    th, td { padding: 8px 5px; }
-    header h1 { font-size: 20px; }
+  /* Links Section */
+  .links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .link-btn {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 18px 24px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: transform .3s var(--ease), border-color .3s var(--ease), background .3s var(--ease), box-shadow .3s var(--ease);
+    animation-delay: .55s;
+  }
+
+  .link-btn:hover {
+    border-color: var(--accent);
+    background: var(--accent-dim);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 26px rgba(201,164,99,.16);
+  }
+
+  .link-btn svg {
+    width: 20px;
+    height: 20px;
+    color: var(--accent);
+  }
+
+  /* Social Icons */
+  .socials {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 40px;
+    animation-delay: .65s;
+  }
+
+  .social-icon {
+    color: var(--muted);
+    transition: color .3s var(--ease), transform .3s var(--ease);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .social-icon:hover {
+    color: var(--accent);
+    transform: translateY(-3px) scale(1.08);
+  }
+
+  .social-icon svg { width: 24px; height: 24px; }
+
+  /* Footer */
+  .footer {
+    margin-top: 50px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 0.8rem;
+    color: var(--muted);
+    animation-delay: .75s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: .001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: .001ms !important;
+    }
+    .profile, .hobby-card, .link-btn, .socials, .footer { opacity: 1; }
+    body::before { display: none; }
   }
 </style>
 </head>
 <body>
 
-<header>
-  <h1>🔥 برنامج الجسم الجذاب</h1>
-  <p>حديد + كارديو ذكي = عضلات مرسومة وتناسق مثالي (V-Taper)</p>
-</header>
-
-<div class="tabs">
-  <button class="tab-btn active" onclick="showTab('philosophy')">🎯 الفلسفة</button>
-  <button class="tab-btn" onclick="showTab('gym')">💪 الحديد</button>
-  <button class="tab-btn" onclick="showTab('cardio')">🔥 الكارديو</button>
-  <button class="tab-btn" onclick="showTab('nutrition')">🍎 التغذية</button>
-</div>
-
 <div class="container">
-
-  <!-- ================= PHILOSOPHY TAB ================= -->
-  <div id="philosophy" class="tab-content active">
-
-    <h2 class="section-title">🎯 لماذا هذا البرنامج مختلف؟</h2>
-
-    <div class="info-box">
-      <strong>الفرق بين "الضخامة" و"الجسم الجذاب":</strong><br><br>
-      🏋️ <strong>بناء الأجسام التقليدي:</strong> كتلة عضلية كبيرة، حجم أهم من الشكل<br>
-      ✨ <strong>الجسم الجذاب (Model Physique):</strong> أكتاف عريضة + خصر ضيق + عضلات مرسومة + نسبة دهون منخفضة (10-14%)
-    </div>
-
-    <h2 class="section-title">📐 أولويات العضلات (من الأهم للأقل)</h2>
-
-    <div class="muscle-priority">
-      <span style="width:120px">🎯 الأكتاف</span>
-      <div class="priority-bar" style="width:95%"></div>
-      <span>95%</span>
-    </div>
-    <div class="muscle-priority">
-      <span style="width:120px">🔙 الظهر (عرض)</span>
-      <div class="priority-bar" style="width:90%"></div>
-      <span>90%</span>
-    </div>
-    <div class="muscle-priority">
-      <span style="width:120px">🎯 البطن</span>
-      <div class="priority-bar" style="width:90%"></div>
-      <span>90%</span>
-    </div>
-    <div class="muscle-priority">
-      <span style="width:120px">💪 الصدر</span>
-      <div class="priority-bar" style="width:80%"></div>
-      <span>80%</span>
-    </div>
-    <div class="muscle-priority">
-      <span style="width:120px">💪 الذراعين</span>
-      <div class="priority-bar" style="width:70%"></div>
-      <span>70%</span>
-    </div>
-    <div class="muscle-priority">
-      <span style="width:120px">🦵 الأرجل</span>
-      <div class="priority-bar" style="width:60%"></div>
-      <span>60% (متوازن - ليس ضخماً)</span>
-    </div>
-
-    <div class="warning-box">
-      ⚠️ <strong>لماذا الأكتاف أهم شيء؟</strong><br>
-      الأكتاف العريضة تخلق تأثير "V-Taper" (كتفين عريضين + خصر ضيق) وهو المظهر الأكثر جاذبية بصرياً للجسم الرجالي - أهم من ضخامة الصدر أو الذراع.
-    </div>
-
-    <h2 class="section-title">⚡ استراتيجية الكارديو الذكية</h2>
-
-    <div class="success-box">
-      ✅ <strong>لماذا HIIT بدلاً من الجري الطويل فقط؟</strong><br>
-      الجري الطويل جداً (أكثر من 30 دقيقة) بشكل متكرر مع رفع الأثقال قد "يأكل" العضل (Muscle Interference Effect). 
-      HIIT (تمارين متقطعة عالية الشدة) تحرق دهون أكثر بوقت أقل، وتحافظ على العضل بشكل أفضل.
-    </div>
-
-    <h2 class="section-title">📊 الخطة الزمنية للنتائج</h2>
-
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="value">4-6 أسابيع</div>
-        <div class="label">أول تغيرات ملحوظة</div>
-      </div>
-      <div class="stat-card">
-        <div class="value">8-12 أسبوع</div>
-        <div class="label">تحول واضح في الشكل</div>
-      </div>
-      <div class="stat-card">
-        <div class="value">4-6 أشهر</div>
-        <div class="label">جسم "جاهز" بالكامل</div>
-      </div>
-    </div>
-
+  <!-- Profile -->
+  <div class="profile">
+    <div class="avatar">AF</div>
+    <h1>Amine <em>Fellah</em></h1>
+    <div class="role">AI & Web Developer</div>
+    <p class="bio">Freelance developer building intelligent software with AI, Node.js, and Python.</p>
   </div>
 
-  <!-- ================= GYM TAB ================= -->
-  <div id="gym" class="tab-content">
-
-    <div class="info-box">
-      <strong>📈 مبدأ التدريب هنا:</strong><br>
-      تكرارات أعلى (10-15) مع أوزان متوسطة = رسم عضلي أفضل من التكرارات المنخفضة الثقيلة جداً.
-      الهدف: Definition وليس القوة القصوى فقط.
+  <!-- Hobbies Grid -->
+  <div class="hobbies">
+    <div class="hobby-card">
+      <span class="hobby-icon">♟️</span>
+      <span class="hobby-title">Chess</span>
     </div>
-
-    <!-- DAY 1: PUSH -->
-    <div class="day-card">
-      <div class="day-header" onclick="toggleDay(this)">
-        <span>الإثنين - Push (صدر + أكتاف + ترايسبس)</span>
-        <span class="arrow">▼</span>
-      </div>
-      <div class="day-body">
-        <table>
-          <tr><th>التمرين</th><th>النوع</th><th>مجموعات</th><th>تكرارات</th><th>الراحة</th></tr>
-          <tr><td>إحماء (Push-ups + تمدد)</td><td><span class="badge badge-warmup">تمهيدي</span></td><td>2</td><td>15</td><td>-</td></tr>
-          <tr><td>Overhead Press</td><td><span class="badge badge-aesthetic">أكتاف 🎯</span></td><td>4</td><td>8-10</td><td>90 ثانية</td></tr>
-          <tr><td>Lateral Raises</td><td><span class="badge badge-aesthetic">أكتاف 🎯</span></td><td>4</td><td>15-20</td><td>45 ثانية</td></tr>
-          <tr><td>Incline Bench Press</td><td><span class="badge badge-main">صدر علوي</span></td><td>4</td><td>10-12</td><td>90 ثانية</td></tr>
-          <tr><td>Cable Flyes (Upper)</td><td><span class="badge badge-assist">صدر</span></td><td>3</td><td>12-15</td><td>60 ثانية</td></tr>
-          <tr><td>Front Raises</td><td><span class="badge badge-aesthetic">أكتاف 🎯</span></td><td>3</td><td>12-15</td><td>45 ثانية</td></tr>
-          <tr><td>Tricep Pushdown</td><td><span class="badge badge-assist">ترايسبس</span></td><td>3</td><td>12-15</td><td>45 ثانية</td></tr>
-        </table>
-      </div>
+    <div class="hobby-card">
+      <span class="hobby-icon">🏃</span>
+      <span class="hobby-title">Running</span>
+      <span class="hobby-stat">58.20 ml/kg/min</span>
     </div>
-
-    <!-- DAY 2: PULL -->
-    <div class="day-card">
-      <div class="day-header" onclick="toggleDay(this)">
-        <span>الثلاثاء - Pull (ظهر عريض + بايسبس)</span>
-        <span class="arrow">▼</span>
-      </div>
-      <div class="day-body">
-        <table>
-          <tr><th>التمرين</th><th>النوع</th><th>مجموعات</th><th>تكرارات</th><th>الراحة</th></tr>
-          <tr><td>إحماء (Band Pull-aparts)</td><td><span class="badge badge-warmup">تمهيدي</span></td><td>2</td><td>15</td><td>-</td></tr>
-          <tr><td>Pull-ups (Wide Grip)</td><td><span class="badge badge-aesthetic">عرض الظهر 🎯</span></td><td>4</td><td>8-10</td><td>90 ثانية</td></tr>
-          <tr><td>Lat Pulldown (Wide Grip)</td><td><span class="badge badge-aesthetic">عرض الظهر 🎯</span></td><td>4</td><td>10-12</td><td>90 ثانية</td></tr>
-          <tr><td>Seated Cable Row</td><td><span class="badge badge-assist">سماكة الظهر</span></td><td>3</td><td>12</td><td>60 ثانية</td></tr>
-          <tr><td>Face Pull</td><td><span class="badge badge-aesthetic">كتف خلفي 🎯</span></td><td>3</td><td>15-20</td><td>45 ثانية</td></tr>
-          <tr><td>Barbell Curl</td><td><span class="badge badge-assist">بايسبس</span></td><td>3</td><td>10-12</td><td>60 ثانية</td></tr>
-          <tr><td>Hammer Curl</td><td><span class="badge badge-assist">بايسبس</span></td><td>3</td><td>12-15</td><td>45 ثانية</td></tr>
-        </table>
-      </div>
+    <div class="hobby-card">
+      <span class="hobby-icon">🏋️</span>
+      <span class="hobby-title">Powerlifting</span>
     </div>
-
-    <!-- DAY 3: HIIT + ABS (separate tab reference) -->
-    <div class="day-card">
-      <div class="day-header" onclick="toggleDay(this)">
-        <span>الأربعاء - HIIT + بطن (راجع تبويب الكارديو)</span>
-        <span class="arrow">▼</span>
-      </div>
-      <div class="day-body">
-        <table>
-          <tr><th>التمرين</th><th>النوع</th><th>مجموعات</th><th>تكرارات</th></tr>
-          <tr><td>Hanging Leg Raise</td><td><span class="badge badge-core">بطن سفلي</span></td><td>4</td><td>12-15</td></tr>
-          <tr><td>Cable Crunch</td><td><span class="badge badge-core">بطن علوي</span></td><td>4</td><td>15-20</td></tr>
-          <tr><td>Russian Twist</td><td><span class="badge badge-core">مائل (Obliques)</span></td><td>3</td><td>20</td></tr>
-          <tr><td>Plank</td><td><span class="badge badge-core">ثبات</span></td><td>3</td><td>60 ثانية</td></tr>
-        </table>
-        <p style="padding:12px 20px; font-size:13px; color:#b8b8d1;">
-          💡 نفذ HIIT (تفاصيله في تبويب الكارديو) بعد تمارين البطن مباشرة
-        </p>
-      </div>
+    <div class="hobby-card">
+      <span class="hobby-icon">🥊</span>
+      <span class="hobby-title">Kickboxing</span>
     </div>
-
-    <!-- DAY 4: LEGS -->
-    <div class="day-card">
-      <div class="day-header" onclick="toggleDay(this)">
-        <span>الخميس - أرجل (متوازنة - ليست ضخمة)</span>
-        <span class="arrow">▼</span>
-      </div>
-      <div class="day-body">
-        <table>
-          <tr><th>التمرين</th><th>النوع</th><th>مجموعات</th><th>تكرارات</th><th>الراحة</th></tr>
-          <tr><td>إحماء (Squat فارغ)</td><td><span class="badge badge-warmup">تمهيدي</span></td><td>2</td><td>15</td><td>-</td></tr>
-          <tr><td>Squat</td><td><span class="badge badge-main">أساسي</span></td><td>4</td><td>10-12</td><td>2 دقيقة</td></tr>
-          <tr><td>Romanian Deadlift</td><td><span class="badge badge-assist">فخذ خلفي</span></td><td>3</td><td>10-12</td><td>90 ثانية</td></tr>
-          <tr><td>Walking Lunges</td><td><span class="badge badge-assist">تناسق</span></td><td>3</td><td>12 لكل رجل</td><td>60 ثانية</td></tr>
-          <tr><td>Leg Curl</td><td><span class="badge badge-assist">فخذ خلفي</span></td><td>3</td><td>12-15</td><td>60 ثانية</td></tr>
-          <tr><td>Calf Raises</td><td><span class="badge badge-aesthetic">تعريف 🎯</span></td><td>4</td><td>15-20</td><td>45 ثانية</td></tr>
-        </table>
-      </div>
+    <div class="hobby-card">
+      <span class="hobby-icon">📸</span>
+      <span class="hobby-title">Photography</span>
     </div>
-
-    <!-- DAY 5: SHOULDERS SPECIALIZATION -->
-    <div class="day-card">
-      <div class="day-header" onclick="toggleDay(this)">
-        <span>الجمعة - أكتاف مكثفة + بطن (يوم التميز)</span>
-        <span class="arrow">▼</span>
-      </div>
-      <div class="day-body">
-        <table>
-          <tr><th>التمرين</th><th>النوع</th><th>مجموعات</th><th>تكرارات</th><th>الراحة</th></tr>
-          <tr><td>Arnold Press</td><td><span class="badge badge-aesthetic">أكتاف 🎯</span></td><td>4</td><td>10-12</td><td>90 ثانية</td></tr>
-          <tr><td>Cable Lateral Raises</td><td><span class="badge badge-aesthetic">أكتاف جانبية 🎯</span></td><td>4</td><td>15-20</td><td>45 ثانية</td></tr>
-          <tr><td>Reverse Pec Deck</td><td><span class="badge badge-aesthetic">كتف خلفي 🎯</span></td><td>4</td><td>15-20</td><td>45 ثانية</td></tr>
-          <tr><td>Upright Row</td><td><span class="badge badge-assist">أكتاف</span></td><td>3</td><td>12</td><td>60 ثانية</td></tr>
-          <tr><td>Close Grip Bench Press</td><td><span class="badge badge-assist">ترايسبس</span></td><td>3</td><td>10-12</td><td>90 ثانية</td></tr>
-          <tr><td>Cable Crunch</td><td><span class="badge badge-core">بطن</span></td><td>3</td><td>15-20</td><td>45 ثانية</td></tr>
-          <tr><td>Bicycle Crunch</td><td><span class="badge badge-core">بطن مائل</span></td><td>3</td><td>20</td><td>30 ثانية</td></tr>
-        </table>
-      </div>
-    </div>
-
-    <div class="info-box">
-      <strong>😴 أيام الراحة/الكارديو:</strong> السبت (كارديو هادئ - راجع التبويب) - الأحد (راحة كاملة)
-    </div>
-
   </div>
 
-  <!-- ================= CARDIO TAB ================= -->
-  <div id="cardio" class="tab-content">
-
-    <h2 class="section-title">🔥 استراتيجية الكارديو للجسم الجذاب</h2>
-
-    <div class="success-box">
-      <strong>القاعدة:</strong> HIIT مرتين أسبوعياً (حرق دهون سريع + حفاظ على العضل) + جري هادئ مرة واحدة (صحة القلب)
-    </div>
-
-    <!-- HIIT SESSION -->
-    <div class="day-card">
-      <div class="day-header" onclick="toggleDay(this)">
-        <span>الأربعاء - HIIT (بعد تمارين البطن مباشرة)</span>
-        <span class="arrow">▼</span>
-      </div>
-      <div class="day-body">
-        <table>
-          <tr><th>المرحلة</th><th>التفاصيل</th></tr>
-          <tr><td>إحماء</td><td>5 دقائق مشي/هرولة خفيفة</td></tr>
-          <tr><td>الجري السريع</td><td>30 ثانية بأقصى سرعة ممكنة</td></tr>
-          <tr><td>الراحة</td><td>90 ثانية مشي بطيء</td></tr>
-          <tr><td>التكرار</td><td>كرر 8 مرات (المجموع: ~16 دقيقة)</td></tr>
-          <tr><td>تهدئة</td><td>5 دقائق مشي + تمدد</td></tr>
-        </table>
-      </div>
-    </div>
-
-    <!-- HIIT SESSION 2 -->
-    <div class="day-card">
-      <div class="day-header" onclick="toggleDay(this)">
-        <span>الجمعة (مساءً) - HIIT ثانية (اختياري لتسريع النتائج)</span>
-        <span class="arrow">▼</span>
-      </div>
-      <div class="day-body">
-        <table>
-          <tr><th>المرحلة</th><th>التفاصيل</th></tr>
-          <tr><td>إحماء</td><td>5 دقائق</td></tr>
-          <tr><td>Sprints</td><td>20 ثانية أقصى سرعة / 40 ثانية راحة × 10 مرات</td></tr>
-          <tr><td>تهدئة</td><td>5 دقائق</td></tr>
-        </table>
-        <p style="padding:12px 20px; font-size:13px; color:#b8b8d1;">
-          💡 فقط إذا كان هدفك خسارة دهون بسرعة أكبر - راقب مستوى تعافيك
-        </p>
-      </div>
-    </div>
-
-    <!-- STEADY RUN -->
-    <div class="day-card">
-      <div class="day-header" onclick="toggleDay(this)">
-        <span>السبت - جري هادئ (صحة القلب + تعافي نشط)</span>
-        <span class="arrow">▼</span>
-      </div>
-      <div class="day-body">
-        <table>
-          <tr><th>التفاصيل</th><th>القيمة</th></tr>
-          <tr><td>المسافة</td><td>3-5 كم (حسب مستواك الحالي)</td></tr>
-          <tr><td>الوتيرة</td><td>هادئة جداً - يمكنك التحدث أثناء الجري</td></tr>
-          <tr><td>الهدف</td><td>تعافي نشط + صحة قلب - ليس للأداء</td></tr>
-        </table>
-      </div>
-    </div>
-
-    <div class="warning-box">
-      ⚠️ <strong>تحذير:</strong> لا تجمع أكثر من 3 جلسات كارديو أسبوعياً في هذه المرحلة - الأولوية للحديد لبناء العضل. الكارديو الزائد سيبطئ نتائجك.
-    </div>
-
+  <!-- Main Links -->
+  <div class="links">
+    <a href="mailto:fellah.amine2050@gmail.com" class="link-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+      Email Me
+    </a>
   </div>
 
-  <!-- ================= NUTRITION TAB ================= -->
-  <div id="nutrition" class="tab-content">
-
-    <h2 class="section-title">🍎 التغذية لـ Body Recomposition</h2>
-
-    <div class="info-box">
-      <strong>الهدف:</strong> خسارة دهون + بناء عضل بنفس الوقت (ممكن إذا كنت مبتدئ أو متوسط الخبرة في التدريب)
-    </div>
-
-    <div class="day-card">
-      <div class="day-header" onclick="toggleDay(this)">
-        <span>حساب احتياجك اليومي</span>
-        <span class="arrow">▼</span>
-      </div>
-      <div class="day-body">
-        <table>
-          <tr><th>الخطوة</th><th>الحساب</th></tr>
-          <tr><td>1. السعرات الأساسية (BMR)</td><td>وزنك (كغ) × 24</td></tr>
-          <tr><td>2. عامل النشاط</td><td>× 1.5 (نشاط متوسط - تدريب 5-6 أيام)</td></tr>
-          <tr><td>3. للـ Recomposition</td><td>اطرح 300-400 سعرة من الناتج</td></tr>
-          <tr><td>4. البروتين اليومي</td><td>2-2.2 غرام × وزنك (كغ)</td></tr>
-          <tr><td>5. الماء</td><td>3 لتر يومياً على الأقل</td></tr>
-        </table>
-      </div>
-    </div>
-
-    <div class="day-card">
-      <div class="day-header" onclick="toggleDay(this)">
-        <span>توزيع الوجبات المقترح</span>
-        <span class="arrow">▼</span>
-      </div>
-      <div class="day-body">
-        <table>
-          <tr><th>الوجبة</th><th>المحتوى</th></tr>
-          <tr><td>الفطور</td><td>بروتين (بيض/زبادي يوناني) + كربوهيدرات معقدة (شوفان)</td></tr>
-          <tr><td>ما قبل التمرين</td><td>كربوهيدرات سريعة (موز) + قهوة (اختياري)</td></tr>
-          <tr><td>بعد التمرين مباشرة</td><td>بروتين سريع الامتصاص (Whey) + كربوهيدرات</td></tr>
-          <tr><td>الغداء</td><td>بروتين (دجاج/سمك/لحم) + خضار + كربوهيدرات معتدلة</td></tr>
-          <tr><td>العشاء</td><td>بروتين + خضار (كربوهيدرات أقل مساءً)</td></tr>
-        </table>
-      </div>
-    </div>
-
-    <div class="day-card">
-      <div class="day-header" onclick="toggleDay(this)">
-        <span>أطعمة يجب تجنبها/تقليلها</span>
-        <span class="arrow">▼</span>
-      </div>
-      <div class="day-body">
-        <table>
-          <tr><th>الطعام</th><th>السبب</th></tr>
-          <tr><td>السكريات المصنعة</td><td>تخزن كدهون بسرعة</td></tr>
-          <tr><td>المشروبات الغازية</td><td>سعرات فارغة</td></tr>
-          <tr><td>الأطعمة المقلية</td><td>دهون غير صحية زائدة</td></tr>
-          <tr><td>الكحول</td><td>يبطئ حرق الدهون وبناء العضل</td></tr>
-        </table>
-      </div>
-    </div>
-
-    <div class="success-box">
-      ✅ <strong>نصيحة ذهبية:</strong> التزم بـ80% من وجباتك نظيفة و20% مرونة (Flexible Dieting) - هذا يضمن استمرارية طويلة المدى بدون إحباط.
-    </div>
-
-    <h2 class="section-title">📊 متابعة التقدم</h2>
-
-    <div class="info-box">
-      قِس نفسك كل أسبوعين (وليس يومياً):<br>
-      📏 محيط الخصر - 📸 صور من زوايا مختلفة - ⚖️ الوزن (كمؤشر عام فقط) - 💪 قوة الأداء في التمارين
-    </div>
-
+  <!-- Social Links -->
+  <div class="socials">
+    <a href="https://instagram.com/2050_fh" class="social-icon" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <a href="#" class="social-icon" target="_blank" rel="noopener" aria-label="GitHub">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+    </a>
   </div>
 
+  <div class="footer">
+    © <span id="yr"></span> Amine Fellah
+  </div>
 </div>
-
-<footer>
-  🔥 جسم الموديل يُبنى بالانضباط، ليس بالسرعة - التزم بالخطة 12 أسبوع كاملة قبل الحكم على النتائج 💪
-</footer>
 
 <script>
-  function showTab(tabId) {
-    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById(tabId).classList.add('active');
-    event.target.classList.add('active');
-  }
-
-  function toggleDay(header) {
-    const body = header.nextElementSibling;
-    header.classList.toggle('open');
-    body.classList.toggle('open');
-  }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.tab-content').forEach(tab => {
-      const firstDay = tab.querySelector('.day-header');
-      if (firstDay) {
-        firstDay.classList.add('open');
-        firstDay.nextElementSibling.classList.add('open');
-      }
-    });
-  });
+  document.getElementById('yr').textContent = new Date().getFullYear();
 </script>
-
 </body>
 </html>
