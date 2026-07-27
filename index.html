@@ -10,14 +10,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 <style>
   :root {
-    --bg: #0b0a0d;
-    --panel: #18151a;
-    --line: rgba(201,164,99,.16);
-    --text: #f3ede2;
-    --muted: #9c9488;
-    --accent: #c9a463;
-    --accent-bright: #e8c98a;
-    --accent-dim: rgba(201,164,99,.14);
+    --bg: #0b0c0f;
+    --panel: #15171c;
+    --line: rgba(122,168,214,.16);
+    --text: #eef1f5;
+    --muted: #949aa4;
+    --accent: #6fa0cf;
+    --accent-bright: #9cc5ea;
+    --accent-dim: rgba(111,160,207,.14);
     --serif: 'Fraunces', Georgia, serif;
     --sans: 'Inter', system-ui, -apple-system, sans-serif;
     --ease: cubic-bezier(.22,.61,.36,1);
@@ -46,8 +46,8 @@
     position: fixed;
     inset: -20%;
     background:
-      radial-gradient(circle at 28% 22%, rgba(201,164,99,.14), transparent 55%),
-      radial-gradient(circle at 74% 78%, rgba(201,164,99,.08), transparent 60%);
+      radial-gradient(circle at 28% 22%, rgba(111,160,207,.14), transparent 55%),
+      radial-gradient(circle at 74% 78%, rgba(111,160,207,.08), transparent 60%);
     filter: blur(50px);
     animation: drift 20s ease-in-out infinite alternate;
     z-index: -1;
@@ -104,8 +104,8 @@
   }
 
   @keyframes glowPulse {
-    0%, 100% { box-shadow: 0 0 18px rgba(201,164,99,.25), 0 0 0 rgba(201,164,99,0); }
-    50%      { box-shadow: 0 0 34px rgba(201,164,99,.45), 0 0 12px rgba(201,164,99,.18); }
+    0%, 100% { box-shadow: 0 0 18px rgba(111,160,207,.25), 0 0 0 rgba(111,160,207,0); }
+    50%      { box-shadow: 0 0 34px rgba(111,160,207,.45), 0 0 12px rgba(111,160,207,.18); }
   }
 
   h1 {
@@ -113,7 +113,7 @@
     font-size: 1.8rem;
     font-weight: 400;
     letter-spacing: -0.02em;
-    margin-bottom: 6px;
+    margin-bottom: 10px;
   }
 
   h1 em {
@@ -136,14 +136,6 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
     font-weight: 600;
-    margin-bottom: 16px;
-  }
-
-  .bio {
-    font-size: 0.95rem;
-    color: var(--muted);
-    max-width: 380px;
-    margin: 0 auto;
   }
 
   /* Section label bridging code <-> discipline */
@@ -174,11 +166,12 @@
     background: var(--panel);
     border: 1px solid var(--line);
     border-radius: 16px;
-    padding: 18px 12px;
+    padding: 20px 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 8px;
     transition: transform .3s var(--ease), border-color .3s var(--ease), background .3s var(--ease), box-shadow .3s var(--ease);
     animation-delay: calc(.15s + (var(--i) * .08s));
   }
@@ -198,7 +191,7 @@
     position: absolute;
     top: 0; left: -75%;
     width: 50%; height: 100%;
-    background: linear-gradient(120deg, transparent, rgba(232,201,138,.16), transparent);
+    background: linear-gradient(120deg, transparent, rgba(156,197,234,.16), transparent);
     transform: skewX(-20deg);
     transition: left .6s var(--ease);
     pointer-events: none;
@@ -208,21 +201,15 @@
     border-color: var(--accent);
     background: var(--accent-dim);
     transform: translateY(-4px);
-    box-shadow: 0 10px 26px rgba(201,164,99,.14);
+    box-shadow: 0 10px 26px rgba(111,160,207,.14);
   }
 
   .hobby-card:hover::after, .link-btn:hover::after { left: 125%; }
 
   .hobby-icon {
-    width: 26px;
-    height: 26px;
-    margin-bottom: 8px;
-    color: var(--accent);
-  }
-
-  .hobby-icon svg {
-    width: 100%;
-    height: 100%;
+    font-size: 1.8rem;
+    line-height: 1;
+    filter: drop-shadow(0 0 6px rgba(111,160,207,.3));
   }
 
   .hobby-title {
@@ -234,41 +221,7 @@
   .hobby-stat {
     font-size: 0.75rem;
     color: var(--accent);
-    margin-top: 4px;
     letter-spacing: 0.03em;
-  }
-
-  /* Tooltip reveal for the precise VO2 max stat — a small secret, not a stat sheet */
-  .hobby-card[data-tooltip] {
-    cursor: default;
-  }
-
-  .hobby-card[data-tooltip]::before {
-    content: attr(data-tooltip);
-    position: absolute;
-    bottom: 8px;
-    left: 50%;
-    transform: translateX(-50%) translateY(6px);
-    font-size: 0.65rem;
-    color: var(--muted);
-    letter-spacing: 0.04em;
-    opacity: 0;
-    transition: opacity .3s var(--ease), transform .3s var(--ease);
-    white-space: nowrap;
-    pointer-events: none;
-  }
-
-  .hobby-card[data-tooltip]:hover::before {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-
-  .hobby-card[data-tooltip]:hover .hobby-stat {
-    opacity: 0;
-  }
-
-  .hobby-stat {
-    transition: opacity .2s var(--ease);
   }
 
   /* Links Section */
@@ -299,7 +252,7 @@
     border-color: var(--accent);
     background: var(--accent-dim);
     transform: translateY(-4px);
-    box-shadow: 0 10px 26px rgba(201,164,99,.16);
+    box-shadow: 0 10px 26px rgba(111,160,207,.16);
   }
 
   .link-btn svg {
@@ -369,8 +322,7 @@
   <div class="profile">
     <div class="avatar">AF</div>
     <h1>Amine <em>Fellah</em></h1>
-    <div class="role">AI & Web Developer</div>
-    <p class="bio">Code by profession, discipline by choice. AI enthusiast, occasional chess strategist, always chasing the next PR — on the bar and in the repo.</p>
+    <div class="role">Freelancer — AI & Web Developer</div>
   </div>
 
   <div class="section-label">Discipline, <span>applied</span></div>
@@ -378,39 +330,25 @@
   <!-- Hobbies Grid -->
   <div class="hobbies">
     <div class="hobby-card">
-      <span class="hobby-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20h6M12 4v3M8 20c.5-4 1-5 1-8a3 3 0 1 1 6 0c0 3 .5 4 1 8"/><path d="M6 20h12"/><path d="M10 7c0-1.5.9-2.5 2-2.5s2 1 2 2.5"/></svg>
-      </span>
+      <span class="hobby-icon">♟️</span>
       <span class="hobby-title">Chess</span>
-      <span class="hobby-stat">Six moves ahead</span>
     </div>
-    <div class="hobby-card" data-tooltip="VO2 max: 58.55 ml/kg/min">
-      <span class="hobby-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="17" cy="5" r="2"/><path d="M11 22l2-8-3-2 2-6 4 3 3 1M6 22l3-7-2-4"/></svg>
-      </span>
+    <div class="hobby-card">
+      <span class="hobby-icon">🏃</span>
       <span class="hobby-title">Running</span>
-      <span class="hobby-stat">Engine still running</span>
+      <span class="hobby-stat">58.55 ml/kg/min</span>
     </div>
     <div class="hobby-card">
-      <span class="hobby-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h3M19 12h3M5 12v-2a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-2zM16 12v-2a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-2z"/><path d="M7 12h10"/></svg>
-      </span>
+      <span class="hobby-icon">🏋️</span>
       <span class="hobby-title">Powerlifting</span>
-      <span class="hobby-stat">Moves heavy things</span>
     </div>
     <div class="hobby-card">
-      <span class="hobby-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M12 7v6l4 4M12 13l-4 4M9 3l-3 2"/></svg>
-      </span>
+      <span class="hobby-icon">🥊</span>
       <span class="hobby-title">Kickboxing</span>
-      <span class="hobby-stat">Controlled chaos</span>
     </div>
     <div class="hobby-card">
-      <span class="hobby-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-2h6l2 2h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg>
-      </span>
+      <span class="hobby-icon">📸</span>
       <span class="hobby-title">Photography</span>
-      <span class="hobby-stat">Freezing the good parts</span>
     </div>
   </div>
 
