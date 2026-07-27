@@ -41,7 +41,6 @@
     overflow-x: hidden;
   }
 
-  /* Ambient drifting glow behind everything */
   body::before {
     content: '';
     position: fixed;
@@ -79,7 +78,7 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  .profile, .hobby-card, .link-btn, .socials, .footer {
+  .profile, .section-label, .hobby-card, .link-btn, .socials, .footer {
     opacity: 0;
     animation: fadeInUp .8s var(--ease) forwards;
   }
@@ -147,6 +146,20 @@
     margin: 0 auto;
   }
 
+  /* Section label bridging code <-> discipline */
+  .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 38px 0 14px;
+    animation-delay: .12s;
+  }
+
+  .section-label span {
+    color: var(--accent);
+  }
+
   /* Hobbies Grid Section */
   .hobbies {
     display: grid;
@@ -176,7 +189,6 @@
   .hobby-card:nth-child(4) { --i: 4; }
   .hobby-card:nth-child(5) { --i: 5; }
 
-  /* لجعل البطاقة الفردية الأخيرة (التصوير) تأخذ عرض الشبكة بالكامل */
   .hobby-card:last-child:nth-child(odd) {
     grid-column: 1 / -1;
   }
@@ -202,8 +214,15 @@
   .hobby-card:hover::after, .link-btn:hover::after { left: 125%; }
 
   .hobby-icon {
-    font-size: 1.8rem;
+    width: 26px;
+    height: 26px;
     margin-bottom: 8px;
+    color: var(--accent);
+  }
+
+  .hobby-icon svg {
+    width: 100%;
+    height: 100%;
   }
 
   .hobby-title {
@@ -216,7 +235,40 @@
     font-size: 0.75rem;
     color: var(--accent);
     margin-top: 4px;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.03em;
+  }
+
+  /* Tooltip reveal for the precise VO2 max stat — a small secret, not a stat sheet */
+  .hobby-card[data-tooltip] {
+    cursor: default;
+  }
+
+  .hobby-card[data-tooltip]::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%) translateY(6px);
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    opacity: 0;
+    transition: opacity .3s var(--ease), transform .3s var(--ease);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .hobby-card[data-tooltip]:hover::before {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .hobby-card[data-tooltip]:hover .hobby-stat {
+    opacity: 0;
+  }
+
+  .hobby-stat {
+    transition: opacity .2s var(--ease);
   }
 
   /* Links Section */
@@ -290,13 +342,22 @@
     animation-delay: .75s;
   }
 
+  .footer .sig {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.72rem;
+    color: var(--muted);
+    opacity: .7;
+    font-style: italic;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: .001ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: .001ms !important;
     }
-    .profile, .hobby-card, .link-btn, .socials, .footer { opacity: 1; }
+    .profile, .section-label, .hobby-card, .link-btn, .socials, .footer { opacity: 1; }
     body::before { display: none; }
   }
 </style>
@@ -309,31 +370,47 @@
     <div class="avatar">AF</div>
     <h1>Amine <em>Fellah</em></h1>
     <div class="role">AI & Web Developer</div>
-    <p class="bio">Freelance developer building intelligent software with AI, Node.js, and Python.</p>
+    <p class="bio">Code by profession, discipline by choice. AI enthusiast, occasional chess strategist, always chasing the next PR — on the bar and in the repo.</p>
   </div>
+
+  <div class="section-label">Discipline, <span>applied</span></div>
 
   <!-- Hobbies Grid -->
   <div class="hobbies">
     <div class="hobby-card">
-      <span class="hobby-icon">♟️</span>
+      <span class="hobby-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 20h6M12 4v3M8 20c.5-4 1-5 1-8a3 3 0 1 1 6 0c0 3 .5 4 1 8"/><path d="M6 20h12"/><path d="M10 7c0-1.5.9-2.5 2-2.5s2 1 2 2.5"/></svg>
+      </span>
       <span class="hobby-title">Chess</span>
+      <span class="hobby-stat">Six moves ahead</span>
     </div>
-    <div class="hobby-card">
-      <span class="hobby-icon">🏃</span>
+    <div class="hobby-card" data-tooltip="VO2 max: 58.55 ml/kg/min">
+      <span class="hobby-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="17" cy="5" r="2"/><path d="M11 22l2-8-3-2 2-6 4 3 3 1M6 22l3-7-2-4"/></svg>
+      </span>
       <span class="hobby-title">Running</span>
-      <span class="hobby-stat">58.55 ml/kg/min</span>
+      <span class="hobby-stat">Engine still running</span>
     </div>
     <div class="hobby-card">
-      <span class="hobby-icon">🏋️</span>
+      <span class="hobby-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h3M19 12h3M5 12v-2a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-2zM16 12v-2a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-2z"/><path d="M7 12h10"/></svg>
+      </span>
       <span class="hobby-title">Powerlifting</span>
+      <span class="hobby-stat">Moves heavy things</span>
     </div>
     <div class="hobby-card">
-      <span class="hobby-icon">🥊</span>
+      <span class="hobby-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M12 7v6l4 4M12 13l-4 4M9 3l-3 2"/></svg>
+      </span>
       <span class="hobby-title">Kickboxing</span>
+      <span class="hobby-stat">Controlled chaos</span>
     </div>
     <div class="hobby-card">
-      <span class="hobby-icon">📸</span>
+      <span class="hobby-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-2h6l2 2h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg>
+      </span>
       <span class="hobby-title">Photography</span>
+      <span class="hobby-stat">Freezing the good parts</span>
     </div>
   </div>
 
@@ -357,6 +434,7 @@
 
   <div class="footer">
     © <span id="yr"></span> Amine Fellah
+    <span class="sig">Still debugging life, one rep at a time.</span>
   </div>
 </div>
 
