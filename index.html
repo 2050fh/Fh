@@ -3,251 +3,226 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Amine Fellah — AI & Web Developer</title>
+<meta name="theme-color" content="#030305" />
+<title>Amine Fellah — AI &amp; Web Developer</title>
 <meta name="description" content="Amine Fellah — Freelance developer building intelligent software with AI, Node.js, and Python." />
-
+<meta property="og:title" content="Amine Fellah — AI & Web Developer" />
+<meta property="og:description" content="Freelance developer building intelligent software with AI, Node.js, and Python." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;1,500;1,600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="no-scroll">
 
-<!-- ============ PRELOADER ============ -->
-<div id="preloader">
-  <div class="preloader-content">
-    <div class="preloader-logo" aria-hidden="true">
-      <span class="pl-letter">A</span><span class="pl-letter">F</span>
-    </div>
-    <div class="preloader-role">AI&nbsp;&amp;&nbsp;WEB&nbsp;DEVELOPER</div>
-    <div class="preloader-bar-wrap">
-      <div class="preloader-bar"><div class="preloader-fill" id="preloaderFill"></div></div>
-      <div class="preloader-percent" id="preloaderPercent">00</div>
+  <!-- ============ PRELOADER ============ -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-grid-lines"></div>
+    <div class="preloader-inner">
+      <div class="preloader-logo">AF<span class="preloader-cursor">_</span></div>
+      <div class="preloader-bar-track">
+        <div class="preloader-bar-fill" id="preloaderFill"></div>
+      </div>
+      <div class="preloader-meta">
+        <span class="preloader-label">INITIALIZING SYSTEM</span>
+        <span class="preloader-percent" id="preloaderPercent">00%</span>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- ============ CUSTOM CURSOR ============ -->
-<div class="cursor-dot" id="cursorDot"></div>
-<div class="cursor-ring" id="cursorRing"></div>
+  <!-- ============ CUSTOM CURSOR ============ -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
 
-<!-- ============ AMBIENT BACKGROUND ============ -->
-<div class="noise" aria-hidden="true"></div>
-<div class="grid-overlay" aria-hidden="true"></div>
-<div class="aurora" aria-hidden="true">
-  <div class="aurora-orb orb-gold"></div>
-  <div class="aurora-orb orb-blue"></div>
-  <div class="aurora-orb orb-amber"></div>
-</div>
+  <!-- ============ BACKGROUND LAYERS ============ -->
+  <canvas id="bg-canvas"></canvas>
+  <div class="grain"></div>
+  <div class="vignette"></div>
 
-<!-- ============ NAVBAR ============ -->
-<nav class="navbar" id="navbar">
-  <a href="#hero" class="nav-logo">AF<span class="nav-logo-dot"></span></a>
-  <div class="nav-right">
-    <a href="#hobbies" class="nav-link">Interests</a>
-    <a href="#contact" class="nav-link">Contact</a>
-    <a href="mailto:contact@aminefellah.dev" class="nav-cta magnetic">
-      <span>Say Hello</span>
-    </a>
-  </div>
-</nav>
+  <div class="site-wrapper">
 
-<main>
+    <!-- ============ HEADER ============ -->
+    <header class="site-header" id="siteHeader">
+      <a href="#top" class="logo-mark magnetic" data-magnetic>
+        <span class="logo-text">AF</span>
+      </a>
+      <nav class="header-nav">
+        <span class="nav-tag">PORTFOLIO / 2026</span>
+        <a href="https://instagram.com/2050_fh1" target="_blank" rel="noopener noreferrer" class="header-social magnetic" data-magnetic>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/>
+            <circle cx="12" cy="12" r="4.2"/>
+            <circle cx="17.6" cy="6.4" r="0.6" fill="currentColor" stroke="none"/>
+          </svg>
+          <span>@2050_fh1</span>
+        </a>
+      </nav>
+    </header>
 
-  <!-- ============ HERO ============ -->
-  <section class="hero" id="hero">
-    <div class="hero-inner">
+    <main id="top">
+      <!-- ============ HERO ============ -->
+      <section class="hero">
+        <div class="hero-bg-text" aria-hidden="true">FELLAH</div>
 
-      <div class="avatar-wrap reveal" data-reveal="scale">
-        <div class="avatar-ring"></div>
-        <div class="avatar-ring avatar-ring-2"></div>
-        <div class="avatar">AF</div>
-      </div>
+        <div class="hero-content" id="heroContent">
+          <div class="avatar-wrap">
+            <div class="avatar-ring">
+              <span class="avatar-initials">AF</span>
+              <svg class="avatar-orbit" viewBox="0 0 200 200">
+                <circle cx="100" cy="100" r="96" />
+              </svg>
+            </div>
+            <div class="avatar-status">
+              <span class="status-dot"></span>
+              AVAILABLE FOR FREELANCE
+            </div>
+          </div>
 
-      <h1 class="hero-name">
-        <span class="reveal" data-reveal="up" data-delay="1">Amine</span>
-        <span class="italic reveal" data-reveal="up" data-delay="2">Fellah</span>
-      </h1>
+          <h1 class="hero-name">
+            <span class="name-line">Amine</span>
+            <span class="name-line name-italic">Fellah</span>
+          </h1>
 
-      <div class="role-badge reveal" data-reveal="up" data-delay="3">
-        <span class="dot-pulse"></span>
-        AI &amp; WEB DEVELOPER
-      </div>
+          <div class="hero-role">
+            <span class="role-bracket">[</span>
+            <span class="role-text">AI &amp; WEB DEVELOPER</span>
+            <span class="role-bracket">]</span>
+          </div>
 
-      <p class="hero-bio reveal" data-reveal="up" data-delay="4">
-        Freelance developer building intelligent software with <span>AI</span>,
-        <span>Node.js</span>, and <span>Python</span>.
-      </p>
+          <p class="hero-bio">
+            Freelance developer building intelligent software with
+            <span class="highlight">AI</span>,
+            <span class="highlight">Node.js</span>, and
+            <span class="highlight">Python</span>.
+          </p>
 
-      <div class="hero-cta reveal" data-reveal="up" data-delay="5">
-        <a href="mailto:contact@aminefellah.dev" class="btn-primary magnetic">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <path d="M2 6.5C2 5.4 2.9 4.5 4 4.5H20C21.1 4.5 22 5.4 22 6.5V17.5C22 18.6 21.1 19.5 20 19.5H4C2.9 19.5 2 18.6 2 17.5V6.5Z"/>
-            <path d="M3 6.5L12 13L21 6.5"/>
+          <blockquote class="hero-quote">
+            <span class="quote-mark">“</span>The person I am no one knows — the person everyone knows I am not.<span class="quote-mark">”</span>
+          </blockquote>
+
+          <div class="hero-actions">
+            <a href="mailto:hello@aminefellah.dev" class="btn-email magnetic" data-magnetic>
+              <span class="btn-email-glow"></span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2.5" y="4.5" width="19" height="15" rx="2.2"/>
+                <path d="M3 6.5l9 6.5 9-6.5"/>
+              </svg>
+              <span>Email Me</span>
+            </a>
+            <a href="https://instagram.com/2050_fh1" target="_blank" rel="noopener noreferrer" class="btn-icon-circle magnetic" data-magnetic aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/>
+                <circle cx="12" cy="12" r="4.2"/>
+                <circle cx="17.6" cy="6.4" r="0.6" fill="currentColor" stroke="none"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="scroll-indicator">
+          <span>SCROLL</span>
+          <div class="scroll-line"><div class="scroll-line-fill"></div></div>
+        </div>
+      </section>
+
+      <!-- ============ HOBBIES ============ -->
+      <section class="hobbies-section">
+        <div class="section-heading" data-reveal>
+          <span class="section-index">( 01 )</span>
+          <h2>Beyond The Code</h2>
+          <span class="section-tag">/// INTERESTS_MATRIX.LOG</span>
+        </div>
+
+        <div class="hobbies-grid">
+
+          <article class="hobby-card card-chess tilt-card" data-reveal data-tilt>
+            <span class="card-index">N.01</span>
+            <div class="card-spotlight"></div>
+            <div class="card-content">
+              <span class="hobby-emoji">♟️</span>
+              <h3>Chess</h3>
+              <span class="hobby-tag">Strategy / Logic</span>
+            </div>
+          </article>
+
+          <article class="hobby-card card-running tilt-card" data-reveal data-tilt>
+            <span class="card-index">N.02</span>
+            <div class="card-spotlight"></div>
+            <div class="card-content">
+              <span class="hobby-emoji">🏃</span>
+              <h3>Running</h3>
+              <div class="hobby-metric">
+                <span class="metric-number" data-target="58.55">0.00</span>
+                <span class="metric-unit">ml/kg/min</span>
+              </div>
+              <span class="hobby-tag">VO2 Max / Endurance</span>
+            </div>
+          </article>
+
+          <article class="hobby-card card-lifting tilt-card" data-reveal data-tilt>
+            <span class="card-index">N.03</span>
+            <div class="card-spotlight"></div>
+            <div class="card-content">
+              <span class="hobby-emoji">🏋️</span>
+              <h3>Powerlifting</h3>
+              <span class="hobby-tag">Strength</span>
+            </div>
+          </article>
+
+          <article class="hobby-card card-kickbox tilt-card" data-reveal data-tilt>
+            <span class="card-index">N.04</span>
+            <div class="card-spotlight"></div>
+            <div class="card-content">
+              <span class="hobby-emoji">🥊</span>
+              <h3>Kickboxing</h3>
+              <span class="hobby-tag">Speed / Precision</span>
+            </div>
+          </article>
+
+          <article class="hobby-card card-photo tilt-card" data-reveal data-tilt>
+            <span class="card-index">N.05</span>
+            <div class="card-spotlight"></div>
+            <div class="card-content">
+              <span class="hobby-emoji">📸</span>
+              <h3>Photography</h3>
+              <span class="hobby-tag">Vision / Light / Detail</span>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- ============ CTA ============ -->
+      <section class="cta-section" data-reveal>
+        <h2 class="cta-heading">Let's build something<br /><span class="name-italic">intelligent</span>.</h2>
+        <a href="mailto:hello@aminefellah.dev" class="btn-email btn-email-lg magnetic" data-magnetic>
+          <span class="btn-email-glow"></span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2.5" y="4.5" width="19" height="15" rx="2.2"/>
+            <path d="M3 6.5l9 6.5 9-6.5"/>
           </svg>
           <span>Email Me</span>
         </a>
+      </section>
+    </main>
 
-        <div class="social-icons">
-          <a href="https://instagram.com/2050_fh1" target="_blank" rel="noopener" class="social-icon magnetic" aria-label="Instagram">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-              <rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/>
-              <circle cx="12" cy="12" r="4.4"/>
-              <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/>
-            </svg>
-          </a>
-          <a href="https://github.com/2050fh" target="_blank" rel="noopener" class="social-icon magnetic" aria-label="GitHub">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55 0-.27-.01-1.16-.02-2.11-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.77.12 3.06.74.81 1.18 1.83 1.18 3.09 0 4.42-2.7 5.4-5.27 5.68.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .3.2.66.79.55A10.52 10.52 0 0 0 23.5 12c0-6.35-5.15-11.5-11.5-11.5Z"/>
-            </svg>
-          </a>
-        </div>
+    <!-- ============ FOOTER ============ -->
+    <footer class="site-footer" data-reveal>
+      <div class="footer-top">
+        <span class="footer-logo">AF</span>
+        <a href="https://instagram.com/2050_fh1" target="_blank" rel="noopener noreferrer" class="footer-social magnetic" data-magnetic>
+          <span>INSTAGRAM</span>
+          <span class="footer-social-arrow">↗</span>
+        </a>
       </div>
-
-    </div>
-
-    <div class="marquee reveal" data-reveal="fade" data-delay="6">
-      <div class="marquee-track">
-        <span>CHESS&nbsp;♟</span><span class="sep">/</span>
-        <span>RUNNING&nbsp;🏃</span><span class="sep">/</span>
-        <span>POWERLIFTING&nbsp;🏋</span><span class="sep">/</span>
-        <span>KICKBOXING&nbsp;🥊</span><span class="sep">/</span>
-        <span>PHOTOGRAPHY&nbsp;📸</span><span class="sep">/</span>
-        <span>CHESS&nbsp;♟</span><span class="sep">/</span>
-        <span>RUNNING&nbsp;🏃</span><span class="sep">/</span>
-        <span>POWERLIFTING&nbsp;🏋</span><span class="sep">/</span>
-        <span>KICKBOXING&nbsp;🥊</span><span class="sep">/</span>
-        <span>PHOTOGRAPHY&nbsp;📸</span><span class="sep">/</span>
+      <div class="footer-line"></div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Amine Fellah. All rights reserved.</p>
+        <p class="footer-tag">DESIGNED &amp; BUILT WITH PRECISION</p>
       </div>
-    </div>
+    </footer>
 
-    <a href="#hobbies" class="scroll-indicator" aria-label="Scroll down">
-      <span>Scroll</span>
-      <div class="scroll-line"><div class="scroll-line-fill"></div></div>
-    </a>
-  </section>
-
-  <!-- ============ QUOTE ============ -->
-  <section class="quote-section">
-    <span class="quote-mark" aria-hidden="true">&ldquo;</span>
-    <p class="quote-text reveal" data-reveal="up">
-      THE PERSON I AM <span>NO ONE KNOWS</span> —
-      THE PERSON EVERYONE KNOWS <span>I AM NOT</span>.
-    </p>
-  </section>
-
-  <!-- ============ HOBBIES ============ -->
-  <section class="hobbies" id="hobbies">
-    <div class="section-head">
-      <span class="section-tag reveal" data-reveal="up">// OUTSIDE THE TERMINAL</span>
-      <h2 class="section-title reveal" data-reveal="up" data-delay="1">
-        Discipline Beyond <span class="italic">Code</span>
-      </h2>
-      <p class="section-subtitle reveal" data-reveal="up" data-delay="2">
-        The same relentlessness I bring to shipping software fuels everything else I do.
-      </p>
-    </div>
-
-    <div class="hobbies-grid">
-
-      <div class="hobby-card reveal" data-reveal="up" data-tilt>
-        <div class="card-glow"></div>
-        <div class="card-inner">
-          <span class="hobby-icon">♟️</span>
-          <h3>Chess</h3>
-          <p>Calculated risk. Every move, a decision tree.</p>
-        </div>
-        <span class="card-index">01</span>
-      </div>
-
-      <div class="hobby-card hobby-card-wide reveal" data-reveal="up" data-delay="1" data-tilt>
-        <div class="card-glow"></div>
-        <div class="card-inner">
-          <span class="hobby-icon">🏃</span>
-          <h3>Running</h3>
-          <p>Endurance built one mile at a time.</p>
-          <div class="hobby-metric">
-            <span class="metric-value" data-count="58.55">0</span>
-            <span class="metric-label">ml/kg/min &middot; VO2 Max</span>
-          </div>
-        </div>
-        <span class="card-index">02</span>
-      </div>
-
-      <div class="hobby-card reveal" data-reveal="up" data-delay="2" data-tilt>
-        <div class="card-glow"></div>
-        <div class="card-inner">
-          <span class="hobby-icon">🏋️</span>
-          <h3>Powerlifting</h3>
-          <p>Strength is a practice, not a trait.</p>
-        </div>
-        <span class="card-index">03</span>
-      </div>
-
-      <div class="hobby-card reveal" data-reveal="up" data-delay="3" data-tilt>
-        <div class="card-glow"></div>
-        <div class="card-inner">
-          <span class="hobby-icon">🥊</span>
-          <h3>Kickboxing</h3>
-          <p>Controlled aggression, sharpened reflexes.</p>
-        </div>
-        <span class="card-index">04</span>
-      </div>
-
-      <div class="hobby-card hobby-card-wide reveal" data-reveal="up" data-delay="4" data-tilt>
-        <div class="card-glow"></div>
-        <div class="card-inner">
-          <span class="hobby-icon">📸</span>
-          <h3>Photography</h3>
-          <p>Framing the world the way I frame ideas — with intent.</p>
-        </div>
-        <span class="card-index">05</span>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ============ CONTACT / CTA ============ -->
-  <section class="cta-section" id="contact">
-    <div class="cta-glow"></div>
-    <span class="section-tag reveal" data-reveal="up">// LET'S TALK</span>
-    <h2 class="cta-title reveal" data-reveal="up" data-delay="1">
-      Got an idea worth <span class="italic">building</span>?
-    </h2>
-    <p class="cta-subtitle reveal" data-reveal="up" data-delay="2">
-      Available for freelance work — AI systems, web platforms, automation.
-    </p>
-    <a href="mailto:contact@aminefellah.dev" class="btn-primary btn-large magnetic reveal" data-reveal="up" data-delay="3">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-        <path d="M2 6.5C2 5.4 2.9 4.5 4 4.5H20C21.1 4.5 22 5.4 22 6.5V17.5C22 18.6 21.1 19.5 20 19.5H4C2.9 19.5 2 18.6 2 17.5V6.5Z"/>
-        <path d="M3 6.5L12 13L21 6.5"/>
-      </svg>
-      <span>Email Me</span>
-    </a>
-  </section>
-
-</main>
-
-<!-- ============ FOOTER ============ -->
-<footer class="footer">
-  <a href="#hero" class="footer-logo">AF</a>
-  <div class="footer-socials">
-    <a href="https://instagram.com/2050_fh1" target="_blank" rel="noopener" class="social-icon magnetic" aria-label="Instagram">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-        <rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/>
-        <circle cx="12" cy="12" r="4.4"/>
-        <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/>
-      </svg>
-    </a>
-    <a href="https://github.com/2050fh" target="_blank" rel="noopener" class="social-icon magnetic" aria-label="GitHub">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55 0-.27-.01-1.16-.02-2.11-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.77.12 3.06.74.81 1.18 1.83 1.18 3.09 0 4.42-2.7 5.4-5.27 5.68.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .3.2.66.79.55A10.52 10.52 0 0 0 23.5 12c0-6.35-5.15-11.5-11.5-11.5Z"/>
-      </svg>
-    </a>
   </div>
-  <p class="footer-copy">&copy; 2026 Amine Fellah</p>
-</footer>
 
 <script src="script.js"></script>
 </body>
