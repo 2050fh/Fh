@@ -3,226 +3,396 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="theme-color" content="#060d1a" />
-<title>Amine Fellah — AI &amp; Web Developer</title>
-<meta name="description" content="Amine Fellah — Freelance developer building intelligent software with AI, Node.js, and Python." />
-<meta property="og:title" content="Amine Fellah — AI & Web Developer" />
-<meta property="og:description" content="Freelance developer building intelligent software with AI, Node.js, and Python." />
+<title>Amine Fellah — AI & Cybersecurity | Web Developer</title>
+<meta name="description" content="Amine Fellah — 19yo AI & Cybersecurity enthusiast, web developer, powerlifter, and photographer. Building intelligent systems, lifting heavy, capturing light." />
+<meta name="theme-color" content="#0a0704" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
 <link rel="stylesheet" href="style.css" />
 </head>
-<body class="no-scroll">
+<body>
 
-  <!-- ============ PRELOADER ============ -->
-  <div class="preloader" id="preloader">
-    <div class="preloader-grid-lines"></div>
-    <div class="preloader-inner">
-      <div class="preloader-logo">AF<span class="preloader-cursor">_</span></div>
-      <div class="preloader-bar-track">
-        <div class="preloader-bar-fill" id="preloaderFill"></div>
-      </div>
-      <div class="preloader-meta">
-        <span class="preloader-label">INITIALIZING SYSTEM</span>
-        <span class="preloader-percent" id="preloaderPercent">00%</span>
-      </div>
+<!-- ============================================
+     PRELOADER — boot sequence
+============================================= -->
+<div id="preloader" role="status" aria-label="Loading site">
+  <div class="preloader-content">
+    <div class="preloader-logo" aria-hidden="true">AF</div>
+    <ul class="boot-lines" aria-hidden="true">
+      <li style="--i:0">&gt; initializing_system<span class="cursor-blink">_</span></li>
+      <li style="--i:1">&gt; loading_identity.exe</li>
+      <li style="--i:2">&gt; mounting_interests_matrix</li>
+      <li style="--i:3">&gt; access_granted</li>
+    </ul>
+    <div class="preloader-bar-wrap">
+      <div class="preloader-bar"><div class="preloader-fill" id="preloaderFill"></div></div>
+      <span class="preloader-percent" id="preloaderPercent">00%</span>
     </div>
   </div>
+</div>
 
-  <!-- ============ CUSTOM CURSOR ============ -->
-  <div class="cursor-dot" id="cursorDot"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
+<!-- ============================================
+     BACKGROUND LAYERS
+============================================= -->
+<canvas id="matrixCanvas" aria-hidden="true"></canvas>
+<div class="noise" aria-hidden="true"></div>
+<div class="glow-field" aria-hidden="true">
+  <div class="glow-orb glow-amber"></div>
+  <div class="glow-orb glow-orange"></div>
+  <div class="glow-orb glow-brown"></div>
+</div>
 
-  <!-- ============ BACKGROUND LAYERS ============ -->
-  <canvas id="bg-canvas"></canvas>
-  <div class="grain"></div>
-  <div class="vignette"></div>
+<!-- ============================================
+     CUSTOM CURSOR (fine-pointer devices only)
+============================================= -->
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+<div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
 
-  <div class="site-wrapper">
-
-    <!-- ============ HEADER ============ -->
-    <header class="site-header" id="siteHeader">
-      <a href="#top" class="logo-mark magnetic" data-magnetic>
-        <span class="logo-text">AF</span>
+<!-- ============================================
+     HEADER / NAV
+============================================= -->
+<header class="site-header">
+  <nav class="navbar" id="navbar" aria-label="Primary">
+    <a href="#hero" class="nav-logo" aria-label="Back to top">
+      AF<span class="nav-logo-dot" aria-hidden="true"></span>
+    </a>
+    <div class="nav-right">
+      <a href="#interests" class="nav-link">Interests</a>
+      <a href="#gallery" class="nav-link">Gallery</a>
+      <a href="#connect" class="nav-link">Connect</a>
+      <a href="mailto:hello@aminefellah.dev" class="nav-cta magnetic">
+        <span>Get In Touch</span>
       </a>
-      <nav class="header-nav">
-        <span class="nav-tag">PORTFOLIO / 2026</span>
-        <a href="https://instagram.com/2050_fh1" target="_blank" rel="noopener noreferrer" class="header-social magnetic" data-magnetic>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/>
-            <circle cx="12" cy="12" r="4.2"/>
-            <circle cx="17.6" cy="6.4" r="0.6" fill="currentColor" stroke="none"/>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ============================================
+       HERO
+  ============================================= -->
+  <section class="hero" id="hero" aria-label="Introduction">
+    <div class="hero-inner">
+
+      <div class="status-chip reveal" data-reveal="fade">
+        <span class="dot-pulse" aria-hidden="true"></span>
+        SYSTEM ONLINE — 19Y/O · STUDENT
+      </div>
+
+      <div class="avatar-wrap reveal" data-reveal="scale" data-delay="1">
+        <div class="avatar-ring"></div>
+        <div class="avatar-ring avatar-ring-2"></div>
+        <div class="avatar">AF</div>
+      </div>
+
+      <h1 class="hero-name">
+        <span class="reveal" data-reveal="up" data-delay="2">Amine</span>
+        <span class="italic reveal" data-reveal="up" data-delay="3">Fellah</span>
+      </h1>
+
+      <div class="typewriter-row reveal" data-reveal="up" data-delay="4">
+        <span class="typewriter-prefix">&gt;</span>
+        <span class="typewriter-text" id="typewriterText" aria-live="polite">AI &amp; CYBERSECURITY</span>
+        <span class="cursor-blink" aria-hidden="true">_</span>
+      </div>
+
+      <p class="hero-bio reveal" data-reveal="up" data-delay="5">
+        Building intelligent systems. <span>Lifting heavy.</span> Capturing light.
+      </p>
+
+      <ul class="tag-row reveal" data-reveal="up" data-delay="6" role="list" aria-label="Areas of focus">
+        <li>AI / ML</li>
+        <li>CYBERSECURITY</li>
+        <li>WEB_DEV</li>
+        <li>POWERLIFTING</li>
+        <li>PHOTOGRAPHY</li>
+        <li>CARS</li>
+      </ul>
+
+      <div class="hero-cta reveal" data-reveal="up" data-delay="7">
+        <a href="mailto:hello@aminefellah.dev" class="btn-primary magnetic" aria-label="Send Amine an email at hello@aminefellah.dev">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M2 6.5C2 5.4 2.9 4.5 4 4.5H20C21.1 4.5 22 5.4 22 6.5V17.5C22 18.6 21.1 19.5 20 19.5H4C2.9 19.5 2 18.6 2 17.5V6.5Z"/>
+            <path d="M3 6.5L12 13L21 6.5"/>
           </svg>
-          <span>@2050_fh1</span>
+          <span>Get In Touch</span>
         </a>
-      </nav>
-    </header>
 
-    <main id="top">
-      <!-- ============ HERO ============ -->
-      <section class="hero">
-        <div class="hero-bg-text" aria-hidden="true">FELLAH</div>
-
-        <div class="hero-content" id="heroContent">
-          <div class="avatar-wrap">
-            <div class="avatar-ring">
-              <span class="avatar-initials">AF</span>
-              <svg class="avatar-orbit" viewBox="0 0 200 200">
-                <circle cx="100" cy="100" r="96" />
-              </svg>
-            </div>
-            <div class="avatar-status">
-              <span class="status-dot"></span>
-              AVAILABLE FOR FREELANCE
-            </div>
-          </div>
-
-          <h1 class="hero-name">
-            <span class="name-line">Amine</span>
-            <span class="name-line name-italic">Fellah</span>
-          </h1>
-
-          <div class="hero-role">
-            <span class="role-bracket">[</span>
-            <span class="role-text">AI &amp; WEB DEVELOPER</span>
-            <span class="role-bracket">]</span>
-          </div>
-
-          <p class="hero-bio">
-            Freelance developer building intelligent software with
-            <span class="highlight">AI</span>,
-            <span class="highlight">Node.js</span>, and
-            <span class="highlight">Python</span>.
-          </p>
-
-          <blockquote class="hero-quote">
-            <span class="quote-mark">“</span>The person I am no one knows — the person everyone knows I am not.<span class="quote-mark">”</span>
-          </blockquote>
-
-          <div class="hero-actions">
-            <a href="mailto:hello@aminefellah.dev" class="btn-email magnetic" data-magnetic>
-              <span class="btn-email-glow"></span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2.5" y="4.5" width="19" height="15" rx="2.2"/>
-                <path d="M3 6.5l9 6.5 9-6.5"/>
-              </svg>
-              <span>Email Me</span>
-            </a>
-            <a href="https://instagram.com/2050_fh1" target="_blank" rel="noopener noreferrer" class="btn-icon-circle magnetic" data-magnetic aria-label="Instagram">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/>
-                <circle cx="12" cy="12" r="4.2"/>
-                <circle cx="17.6" cy="6.4" r="0.6" fill="currentColor" stroke="none"/>
-              </svg>
-            </a>
-          </div>
+        <div class="social-icons">
+          <a href="https://instagram.com/2050_fh1" target="_blank" rel="noopener noreferrer" class="social-icon magnetic" aria-label="Visit my Instagram profile @2050_fh1">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+              <rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/>
+              <circle cx="12" cy="12" r="4.4"/>
+              <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
         </div>
+      </div>
 
-        <div class="scroll-indicator">
-          <span>SCROLL</span>
-          <div class="scroll-line"><div class="scroll-line-fill"></div></div>
-        </div>
-      </section>
+    </div>
 
-      <!-- ============ HOBBIES ============ -->
-      <section class="hobbies-section">
-        <div class="section-heading" data-reveal>
-          <span class="section-index">( 01 )</span>
-          <h2>Beyond The Code</h2>
-          <span class="section-tag">/// INTERESTS_MATRIX.LOG</span>
-        </div>
+    <a href="#quote" class="scroll-indicator" aria-label="Scroll down for more">
+      <span>Scroll</span>
+      <div class="scroll-line"><div class="scroll-line-fill"></div></div>
+    </a>
+  </section>
 
-        <div class="hobbies-grid">
+  <!-- ============================================
+       QUOTE
+  ============================================= -->
+  <section class="quote-section" id="quote" aria-label="Personal quote">
+    <div class="quote-frame">
+      <span class="frame-corner tl" aria-hidden="true"></span>
+      <span class="frame-corner tr" aria-hidden="true"></span>
+      <span class="frame-corner bl" aria-hidden="true"></span>
+      <span class="frame-corner br" aria-hidden="true"></span>
+      <p class="quote-text reveal" data-reveal="up">
+        "The person I am <span>no one knows</span> —
+        the person everyone knows <span>I am not</span>."
+      </p>
+    </div>
+  </section>
 
-          <article class="hobby-card card-chess tilt-card" data-reveal data-tilt>
-            <span class="card-index">N.01</span>
-            <div class="card-spotlight"></div>
-            <div class="card-content">
-              <span class="hobby-emoji">♟️</span>
-              <h3>Chess</h3>
-              <span class="hobby-tag">Strategy / Logic</span>
-            </div>
-          </article>
+  <!-- ============================================
+       INTERESTS MATRIX
+  ============================================= -->
+  <section class="interests" id="interests" aria-labelledby="interests-heading">
+    <div class="section-head">
+      <span class="section-tag reveal" data-reveal="up">// INTERESTS_MATRIX</span>
+      <h2 class="section-title reveal" data-reveal="up" data-delay="1" id="interests-heading">
+        Beyond The <span class="italic">Terminal</span>
+      </h2>
+      <p class="section-subtitle reveal" data-reveal="up" data-delay="2">
+        Same discipline I bring to code — applied to the body, the board, and the lens.
+      </p>
+    </div>
 
-          <article class="hobby-card card-running tilt-card" data-reveal data-tilt>
-            <span class="card-index">N.02</span>
-            <div class="card-spotlight"></div>
-            <div class="card-content">
-              <span class="hobby-emoji">🏃</span>
-              <h3>Running</h3>
-              <div class="hobby-metric">
-                <span class="metric-number" data-target="58.55">0.00</span>
-                <span class="metric-unit">ml/kg/min</span>
+    <ul class="interests-grid" role="list">
+
+      <li class="interest-card reveal" data-reveal="up" data-tilt>
+        <article>
+          <div class="card-glow" aria-hidden="true"></div>
+          <div class="card-inner">
+            <span class="interest-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="6" r="2.6"/><path d="M9.2 10.5h5.6l1.6 4.3H7.6l1.6-4.3z"/><path d="M6 19.5h12l-1.2-3.7H7.2L6 19.5z"/></svg>
+            </span>
+            <h3>Chess</h3>
+            <p>Calculated risk. Every move maps a decision tree.</p>
+          </div>
+          <span class="card-index" aria-hidden="true">01</span>
+        </article>
+      </li>
+
+      <li class="interest-card interest-card-wide reveal" data-reveal="up" data-delay="1" data-tilt>
+        <article>
+          <div class="card-glow" aria-hidden="true"></div>
+          <div class="card-inner">
+            <span class="interest-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 12h4l2-7 4 14 2-9 2 4.5h6"/>
+              </svg>
+            </span>
+            <h3>Running</h3>
+            <p>Endurance, tracked and pushed one mile at a time.</p>
+
+            <!-- UPDATE data-count + displayed value with your latest tracked VO2 Max -->
+            <div class="interest-metric">
+              <div class="metric-main">
+                <span class="metric-value" data-count="58.55">0.00</span>
+                <span class="metric-label">ml/kg/min · VO2 MAX</span>
               </div>
-              <span class="hobby-tag">VO2 Max / Endurance</span>
+              <span class="device-tag">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="2" width="10" height="20" rx="3"/><line x1="10" y1="6" x2="14" y2="6"/></svg>
+                Tracked via Redmi Watch 5 Active
+              </span>
             </div>
-          </article>
+          </div>
+          <span class="card-index" aria-hidden="true">02</span>
+        </article>
+      </li>
 
-          <article class="hobby-card card-lifting tilt-card" data-reveal data-tilt>
-            <span class="card-index">N.03</span>
-            <div class="card-spotlight"></div>
-            <div class="card-content">
-              <span class="hobby-emoji">🏋️</span>
-              <h3>Powerlifting</h3>
-              <span class="hobby-tag">Strength</span>
-            </div>
-          </article>
+      <li class="interest-card reveal" data-reveal="up" data-delay="2" data-tilt>
+        <article>
+          <div class="card-glow" aria-hidden="true"></div>
+          <div class="card-inner">
+            <span class="interest-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                <rect x="1" y="10" width="3" height="4"/><rect x="4.5" y="8" width="2" height="8"/>
+                <line x1="6.5" y1="12" x2="17.5" y2="12"/>
+                <rect x="17.5" y="8" width="2" height="8"/><rect x="20" y="10" width="3" height="4"/>
+              </svg>
+            </span>
+            <h3>Powerlifting</h3>
+            <p>Strength is a practice, not a trait. Progress, logged weekly.</p>
+          </div>
+          <span class="card-index" aria-hidden="true">03</span>
+        </article>
+      </li>
 
-          <article class="hobby-card card-kickbox tilt-card" data-reveal data-tilt>
-            <span class="card-index">N.04</span>
-            <div class="card-spotlight"></div>
-            <div class="card-content">
-              <span class="hobby-emoji">🥊</span>
-              <h3>Kickboxing</h3>
-              <span class="hobby-tag">Speed / Precision</span>
-            </div>
-          </article>
+      <li class="interest-card reveal" data-reveal="up" data-delay="3" data-tilt>
+        <article>
+          <div class="card-glow" aria-hidden="true"></div>
+          <div class="card-inner">
+            <span class="interest-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round">
+                <path d="M7.5 12V7a3 3 0 0 1 6 0v1.2a3 3 0 0 1 3 3V13a5 5 0 0 1-5 5h-1.5a4 4 0 0 1-4-4v-2h1.5z"/>
+              </svg>
+            </span>
+            <h3>Kickboxing</h3>
+            <p>Controlled aggression. Sharpened reflexes, under pressure.</p>
+          </div>
+          <span class="card-index" aria-hidden="true">04</span>
+        </article>
+      </li>
 
-          <article class="hobby-card card-photo tilt-card" data-reveal data-tilt>
-            <span class="card-index">N.05</span>
-            <div class="card-spotlight"></div>
-            <div class="card-content">
-              <span class="hobby-emoji">📸</span>
-              <h3>Photography</h3>
-              <span class="hobby-tag">Vision / Light / Detail</span>
-            </div>
-          </article>
+      <li class="interest-card interest-card-wide reveal" data-reveal="up" data-delay="4" data-tilt>
+        <article>
+          <div class="card-glow" aria-hidden="true"></div>
+          <div class="card-inner">
+            <span class="interest-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round">
+                <path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>
+                <circle cx="12" cy="13" r="3.4"/>
+              </svg>
+            </span>
+            <h3>Photography</h3>
+            <p>Framing the world in amber and shadow — see it in the gallery below.</p>
+          </div>
+          <span class="card-index" aria-hidden="true">05</span>
+        </article>
+      </li>
 
-        </div>
-      </section>
+    </ul>
+  </section>
 
-      <!-- ============ CTA ============ -->
-      <section class="cta-section" data-reveal>
-        <h2 class="cta-heading">Let's build something<br /><span class="name-italic">intelligent</span>.</h2>
-        <a href="mailto:hello@aminefellah.dev" class="btn-email btn-email-lg magnetic" data-magnetic>
-          <span class="btn-email-glow"></span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2.5" y="4.5" width="19" height="15" rx="2.2"/>
-            <path d="M3 6.5l9 6.5 9-6.5"/>
-          </svg>
-          <span>Email Me</span>
-        </a>
-      </section>
-    </main>
+  <!-- ============================================
+       VISUALS_LOG / GALLERY
+  ============================================= -->
+  <section class="gallery" id="gallery" aria-labelledby="gallery-heading">
+    <div class="section-head">
+      <span class="section-tag reveal" data-reveal="up">// VISUALS_LOG</span>
+      <h2 class="section-title reveal" data-reveal="up" data-delay="1" id="gallery-heading">
+        Captured <span class="italic">Frames</span>
+      </h2>
+      <p class="section-subtitle reveal" data-reveal="up" data-delay="2">
+        Photography and digital art — shot, edited, and rendered in my own palette.
+      </p>
+    </div>
 
-    <!-- ============ FOOTER ============ -->
-    <footer class="site-footer" data-reveal>
-      <div class="footer-top">
-        <span class="footer-logo">AF</span>
-        <a href="https://instagram.com/2050_fh1" target="_blank" rel="noopener noreferrer" class="footer-social magnetic" data-magnetic>
-          <span>INSTAGRAM</span>
-          <span class="footer-social-arrow">↗</span>
-        </a>
-      </div>
-      <div class="footer-line"></div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 Amine Fellah. All rights reserved.</p>
-        <p class="footer-tag">DESIGNED &amp; BUILT WITH PRECISION</p>
-      </div>
-    </footer>
+    <!--
+      REPLACE PLACEHOLDER VISUALS:
+      Swap the inline background-image gradient in .gallery-media with:
+      style="background-image:url('images/your-photo.jpg')"
+    -->
+    <ul class="gallery-grid" role="list">
 
+      <li class="reveal" data-reveal="up">
+        <figure class="gallery-item">
+          <div class="gallery-media gallery-media--01" aria-hidden="true"></div>
+          <div class="gallery-overlay">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.4"/></svg>
+          </div>
+          <figcaption><span>01</span> Photography — Street Light</figcaption>
+        </figure>
+      </li>
+
+      <li class="reveal" data-reveal="up" data-delay="1">
+        <figure class="gallery-item">
+          <div class="gallery-media gallery-media--02" aria-hidden="true"></div>
+          <div class="gallery-overlay">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3a9 9 0 1 0 9 9c0-1-1-2-2-2h-2a2 2 0 0 1-2-2c0-1 1-1 1-2a3 3 0 0 0-3-3z"/><circle cx="7.5" cy="10.5" r="1" fill="currentColor" stroke="none"/><circle cx="8.5" cy="14.5" r="1" fill="currentColor" stroke="none"/><circle cx="13" cy="16" r="1" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <figcaption><span>02</span> Digital Art — Amber Study</figcaption>
+        </figure>
+      </li>
+
+      <li class="reveal" data-reveal="up" data-delay="2">
+        <figure class="gallery-item">
+          <div class="gallery-media gallery-media--03" aria-hidden="true"></div>
+          <div class="gallery-overlay">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.4"/></svg>
+          </div>
+          <figcaption><span>03</span> Photography — Night Drive</figcaption>
+        </figure>
+      </li>
+
+      <li class="reveal" data-reveal="up">
+        <figure class="gallery-item">
+          <div class="gallery-media gallery-media--04" aria-hidden="true"></div>
+          <div class="gallery-overlay">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3a9 9 0 1 0 9 9c0-1-1-2-2-2h-2a2 2 0 0 1-2-2c0-1 1-1 1-2a3 3 0 0 0-3-3z"/><circle cx="7.5" cy="10.5" r="1" fill="currentColor" stroke="none"/><circle cx="8.5" cy="14.5" r="1" fill="currentColor" stroke="none"/><circle cx="13" cy="16" r="1" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <figcaption><span>04</span> Digital Art — Rust & Gold</figcaption>
+        </figure>
+      </li>
+
+      <li class="reveal" data-reveal="up" data-delay="1">
+        <figure class="gallery-item">
+          <div class="gallery-media gallery-media--05" aria-hidden="true"></div>
+          <div class="gallery-overlay">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.4"/></svg>
+          </div>
+          <figcaption><span>05</span> Photography — Concrete & Chrome</figcaption>
+        </figure>
+      </li>
+
+      <li class="reveal" data-reveal="up" data-delay="2">
+        <figure class="gallery-item">
+          <div class="gallery-media gallery-media--06" aria-hidden="true"></div>
+          <div class="gallery-overlay">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3a9 9 0 1 0 9 9c0-1-1-2-2-2h-2a2 2 0 0 1-2-2c0-1 1-1 1-2a3 3 0 0 0-3-3z"/><circle cx="7.5" cy="10.5" r="1" fill="currentColor" stroke="none"/><circle cx="8.5" cy="14.5" r="1" fill="currentColor" stroke="none"/><circle cx="13" cy="16" r="1" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <figcaption><span>06</span> Digital Art — Ember</figcaption>
+        </figure>
+      </li>
+
+    </ul>
+  </section>
+
+  <!-- ============================================
+       CONNECT
+  ============================================= -->
+  <section class="connect" id="connect" aria-labelledby="connect-heading">
+    <div class="connect-glow" aria-hidden="true"></div>
+    <span class="section-tag reveal" data-reveal="up">// CONNECT</span>
+    <h2 class="connect-title reveal" data-reveal="up" data-delay="1" id="connect-heading">
+      Let's Talk Tech, <span class="italic">Training</span>, or Frames
+    </h2>
+    <p class="connect-subtitle reveal" data-reveal="up" data-delay="2">
+      Always down to talk builds, PRs — personal records, not just pull requests — or your favorite lens.
+    </p>
+    <a href="mailto:hello@aminefellah.dev" class="btn-primary btn-large magnetic reveal" data-reveal="up" data-delay="3" aria-label="Send Amine an email at hello@aminefellah.dev">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <path d="M2 6.5C2 5.4 2.9 4.5 4 4.5H20C21.1 4.5 22 5.4 22 6.5V17.5C22 18.6 21.1 19.5 20 19.5H4C2.9 19.5 2 18.6 2 17.5V6.5Z"/>
+        <path d="M3 6.5L12 13L21 6.5"/>
+      </svg>
+      <span>Get In Touch</span>
+    </a>
+  </section>
+
+</main>
+
+<!-- ============================================
+     FOOTER
+============================================= -->
+<footer class="site-footer">
+  <a href="#hero" class="footer-logo" aria-label="Back to top">AF</a>
+  <div class="footer-socials">
+    <a href="https://instagram.com/2050_fh1" target="_blank" rel="noopener noreferrer" class="social-icon magnetic" aria-label="Visit my Instagram profile @2050_fh1">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+        <rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/>
+        <circle cx="12" cy="12" r="4.4"/>
+        <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/>
+      </svg>
+    </a>
   </div>
+  <p class="footer-status" aria-hidden="true">SYSTEM_STATUS: ONLINE</p>
+  <p class="footer-copy">&copy; 2026 Amine Fellah</p>
+</footer>
 
 <script src="script.js"></script>
 </body>
